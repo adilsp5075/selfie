@@ -1,0 +1,9 @@
+.graph{
+    position: absolute;
+    width: 50%;
+    height: 45%;
+    left: 5%;
+    top: 50%;
+    background: #3D3F4B;
+    border-radius: 20px;    
+}

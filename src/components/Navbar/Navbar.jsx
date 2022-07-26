@@ -1,5 +1,5 @@
 import React from 'react'
-import avatar from '/assets/modi.png'
+import avatar from '/assets/avatar2.png'
 import './navbar.css'
 import {AiFillHome} from 'react-icons/ai'
 import {MdAddTask} from 'react-icons/md'

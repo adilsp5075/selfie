@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState ,useEffect} from 'react'
 import Navbar from '../Navbar/Navbar'
 import './home.css'
 import { db, auth } from '../Firebase/fireBase';
@@ -9,7 +9,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Graph from './Graph';
 
-const percentage = 66;
+// const percentage = 66;
 
 function pad2(n) {
     return (n < 10 ? '0' : '') + n;
@@ -26,6 +26,21 @@ function Home() {
     const [task, setTask] = useState("")
     const [desc, setDesc] = useState("")
     const [date1, setDate] = useState("")
+    const [data, setData] = useState(); //current data of user
+    const [allTasks, setAllTasks] = useState();
+    useEffect(() => {
+        onAuthStateChanged(auth, async (user) => {
+          //load user data
+          const userData = await getDoc(doc(db, "users", user.uid));
+          setData(userData.data());
+    
+          //load all tasks
+          const querySnapshot = await getDocs(
+            collection(db, "users/" + user.uid + "/tasks")
+          );
+          setAllTasks(querySnapshot.docs);
+        });
+      }, []);
 
     async function addData() {
         const dataDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
@@ -58,8 +73,6 @@ function Home() {
             )
         }
     }
-
-    const [allTasks, setAllTasks] = useState();
 
     const user = auth.currentUser;
   
@@ -138,7 +151,15 @@ function Home() {
                 <div className="hd3">
                     <h3>Your Progress</h3>
                     <div>
-                    <CircularProgressbar value={percentage} text={`${percentage}%`} />;
+                    {data && (
+                        <div>
+                          
+                            <CircularProgressbar value={data.completedTasks / data.totalTasks * 100} text={`${data.completedTasks / data.totalTasks * 100}%`} />;
+                        <p>Total Tasks : {data.totalTasks} </p>
+                        <p>Completed : {data.completedTasks} </p>
+                        <p>Uncompleted : {data.totalTasks - data.completedTasks} </p>
+                        </div>
+                    )}
                     </div>
                 </div>
             </div>

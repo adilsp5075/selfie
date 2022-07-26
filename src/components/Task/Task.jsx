@@ -4,7 +4,7 @@ import styles from "./task.module.css"
 
 
 import { db, auth } from '../Firebase/fireBase';
-import { collection, doc, getDocs, updateDoc, deleteDoc,getDoc } from "firebase/firestore"
+import { collection, doc, getDocs, updateDoc, deleteDoc,getDoc, setDoc } from "firebase/firestore"
 import { onAuthStateChanged } from '@firebase/auth';
 
 
@@ -20,57 +20,22 @@ export default function Task() {
     setAllTasks(querySnapshot.docs);
   })
 
-  const setCompleted = (id) => {
+  const setCompleted = async (id) => {
     updateDoc(doc(db, "users/" + user.uid + "/tasks", id), {
       completed: true
     })
+    //the following code will increment the completedTasks count
+    const userData = await getDoc(doc(db, "users", auth.currentUser.uid));
+    const completedTasks = userData.data().completedTasks + 1;
+
+    updateDoc(doc(db, "users", auth.currentUser.uid), {
+      completedTasks,
+    });
   }
 
   const deleteTask = (id) => {
     deleteDoc(doc(db, "users/" + user.uid + "/tasks", id))
   }
-
-  
-  async function completedTask() {
-    const dataDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
-    allTasks.map((task1) => {
-        const task = task1.data();
-        if(dataDoc.exists()){
-        const finishedTaskNo = dataDoc.data().completedTasks
-            if(task.completed){
-                updateDoc(doc(db, "users", auth.currentUser.uid), {
-                    completedTasks: finishedTaskNo + 1
-                })
-            }
-        }
-        else {
-              setDoc(doc(db, "users", auth.currentUser.uid), {
-                  completedTasks: 0
-              })
-        }
-    })
-}
-async function uncompletedTask() {
-    const dataDoc = await getDoc(doc(db, "users", auth.currentUser.uid));
-    allTasks.map((task2) => {
-        const task = task2.data();
-        if(dataDoc.exists()){
-        const unfinishedTaskNo = dataDoc.data().uncompletedTasks
-            if(!task.completed){
-                updateDoc(doc(db, "users", auth.currentUser.uid), {
-                    uncompletedTasks: unfinishedTaskNo + 1
-                })
-            }
-        }
-        else{
-            setDoc(doc(db, "users", auth.currentUser.uid), {
-                uncompletedTasks: 0
-            })
-        }
-    })
-}
-completedTask();
-uncompletedTask();
 
   return (
     <div>
