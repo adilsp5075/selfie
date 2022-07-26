@@ -5,16 +5,21 @@ import { db, auth } from '../Firebase/fireBase';
 import { collection, doc, addDoc, updateDoc, getDoc, setDoc, getDocs } from "firebase/firestore"
 import styles from "./form.module.css"
 import { onAuthStateChanged } from '@firebase/auth';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import Graph from './Graph';
+
+const percentage = 66;
 
 function pad2(n) {
     return (n < 10 ? '0' : '') + n;
   }
 
-  var date = new Date();
-  var month = pad2(date.getMonth()+1);//months (0-11)
-  var day = pad2(date.getDate());//day (1-31)
-  var year= date.getFullYear();
-  var formattedDate =  year+"-"+month+"-"+day;
+let date = new Date();
+let month = pad2(date.getMonth()+1);//months (0-11)
+let day = pad2(date.getDate());//day (1-31)
+let year= date.getFullYear();
+let formattedDate =  year+"-"+month+"-"+day;
 
 function Home() {
     const [taskModal, setTaskModal] = useState(false);
@@ -47,6 +52,7 @@ function Home() {
             }).then(() => {
                 setDoc(doc(db, "users", auth.currentUser.uid), {
                     totalTasks: 1,
+                    completedTasks: 0,
                 })
             }
             )
@@ -125,11 +131,15 @@ function Home() {
                 </div>
                 <div className="hd2">
                     <h3>Your Statistic</h3>
-                    <div></div>
+                    <div>
+                        <Graph/>
+                    </div>
                 </div>
                 <div className="hd3">
                     <h3>Your Progress</h3>
-                    <div></div>
+                    <div>
+                    <CircularProgressbar value={percentage} text={`${percentage}%`} />;
+                    </div>
                 </div>
             </div>
         </div>
