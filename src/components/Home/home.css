@@ -40,7 +40,7 @@
     background: linear-gradient(210.84deg, #BB50BD 18.69%, rgba(12, 49, 244, 0) 196.89%);
     border-radius: 20px;
 } */
-.hd2 h3{
+/* .hd2 h3{
     position: absolute;
     left: 5%;
     top: 40%;
@@ -49,8 +49,8 @@
     font-weight: 400;
     font-size: 24px;
     color: #FFFFFF;
-}
-.hd2 div{
+} */
+/* .hd2 div{
     position: absolute;
     width: 50%;
     height: 45%;
@@ -58,11 +58,11 @@
     top: 50%;
     background: #3D3F4B;
     border-radius: 20px;
-}
-.hd3 h3{
-    position: absolute;
-    left: 60%;
-    top: 40%;
+} */
+.hd31{
+   position: absolute;
+   right: 30%;
+    bottom: 50%; 
     font-family: 'Alata';
     font-style: normal;
     font-weight: 400;
@@ -70,12 +70,43 @@
     line-height: 43px;
     color: #FFFFFF;
 }
-.hd3 div{
+
+.hd21{
+    position: absolute;
+    left: 8%;
+     bottom: 50%; 
+     font-family: 'Alata';
+     font-style: normal;
+     font-weight: 400;
+     font-size: 24px;
+     line-height: 43px;
+     color: #FFFFFF;
+ }
+
+.circle1{
+    position: absolute;
+   
+    width: 300px;
+    height: 300px;
+    color: #FFFFFF;
+    font-size: 16px;
+    
+
+    right: 5%;
+    bottom: 5%;
+} 
+
+.graph2{
+    position: absolute;
+    left: 6%;
+    top: 50%;
+}
+ /* .hd3 div{
     position: absolute;
     width: 36%;
     height: 45%;
     left: 60%;
-    top: 50%;
+    top: 40%;
     background: #3D3F4B;
     border-radius: 20px;
-}
+} */

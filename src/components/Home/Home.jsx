@@ -143,21 +143,22 @@ function Home() {
                     </div>
                 </div>
                 <div className="hd2">
-                    <h3>Your Statistic</h3>
-                    <div>
+                    <p className='hd21'>Your Statistic</p>
+                    <div className='graph2'>
                         <Graph/>
                     </div>
                 </div>
                 <div className="hd3">
-                    <h3>Your Progress</h3>
+                    <p className='hd31'>Your Progress</p>
                     <div>
                     {data && (
-                        <div>
-                          
-                            <CircularProgressbar value={data.completedTasks / data.totalTasks * 100} text={`${data.completedTasks / data.totalTasks * 100}%`} />;
-                        <p>Total Tasks : {data.totalTasks} </p>
-                        <p>Completed : {data.completedTasks} </p>
-                        <p>Uncompleted : {data.totalTasks - data.completedTasks} </p>
+                        <div className="circle1">
+        
+                            <CircularProgressbar value={Math.round(data.completedTasks / data.totalTasks * 100)} text={`${Math.round(data.completedTasks / data.totalTasks * 100)}%`} />
+                            <div>
+                            <p>Total Tasks : {data.totalTasks} </p>
+                            <p>Completed : {data.completedTasks} </p>
+                            <p>Uncompleted : {data.totalTasks - data.completedTasks} </p></div>
                         </div>
                     )}
                     </div>

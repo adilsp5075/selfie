@@ -17,14 +17,14 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD_hIGn-D3z217eDLlhIhJnOzwUWj5o6Lg",
-    authDomain: "selfie-63ee7.firebaseapp.com",
-    projectId: "selfie-63ee7",
-    storageBucket: "selfie-63ee7.appspot.com",
-    messagingSenderId: "1066562324655",
-    appId: "1:1066562324655:web:c8f8df4cf3bb5db48aec5a",
-    measurementId: "G-EFVWJ959Z2"
-  };
+  apiKey: "AIzaSyA1noXxzu76onbyXOHfEtxFY17xvOA6KE4",
+  authDomain: "selfie2-0.firebaseapp.com",
+  projectId: "selfie2-0",
+  storageBucket: "selfie2-0.appspot.com",
+  messagingSenderId: "1017484524841",
+  appId: "1:1017484524841:web:691f495c1a0f79cef80b38",
+  measurementId: "G-V1VELWS8F3"
+};
 
 const app =initializeApp(firebaseConfig);
 const auth = getAuth(app);
