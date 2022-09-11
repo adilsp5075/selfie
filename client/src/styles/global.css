@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  font-size: calc(14px + 0.33vw);
+  overflow-x: hidden;
+}
+.head {
+  font-family: "Square Peg", cursive;
+}
+.taskform{
+  z-index: 10;
+}
+
+@layer components {
+  .tab {
+    @apply bg-none flex-1 w-5;
+  }
+
+  .input {
+    @apply bg-transparent border-2 border-fuchsia-700 rounded-full mt-5 h-12 text-black dark:text-white outline-none p-4 text-sm;
+  }
+  .submit {
+    @apply bg-fuchsia-700  rounded-full mt-5 h-12 text-black dark:text-white outline-none cursor-pointer;
+  }
+  .navLink {
+    @apply w-full p-3 flex items-center  rounded  hover:bg-gray-200 dark:hover:bg-gray-800 gap-2 text-gray-500;
+  }
+  .formInput {
+    @apply w-1/2 rounded text-white dark:text-black outline-none p-2;
+  }
+  .taskCard {
+    @apply relative w-fit h-fit dark:bg-gray-800 bg-gray-300 rounded text-base px-4 pt-6 pb-4 mb-4 mr-4;
+  }
+  .taskStatus {
+    @apply rounded text-xs p-1 mr-2;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: gray;
+}
